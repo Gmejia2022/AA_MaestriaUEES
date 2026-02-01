@@ -9,6 +9,9 @@ Docente: Ingeniera GLADYS MARIA VILLEGAS RUGEL
 
 Fecha de Ultima Actualizacion: 01 Febrero 2026
 
+# Instalacion de Requerimientos: 
+pip install -r "c:\Users\gonza\Desktop\UEES\2025 Maestria AI\2025\Aprendizaje Automatico\GitHub\AA_MaestriaUEES\requirements.txt"
+
 ## Dataset: Social Network Ads
 
 ### Dominio
