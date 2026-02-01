@@ -1,4 +1,6 @@
-# AA_MaestriaUEES
+# Proyecto: Clasificación técnica mediante SVM y Árboles de Decisión
+# Universidad de Especializades Espiritu Santo
+# Maestria en Inteligencia Artificial
 
 Repositorio para la materia de **Aprendizaje Automatico** - Maestria en Inteligencia Artificial, UEES.
 
@@ -54,16 +56,21 @@ Script que realiza el analisis exploratorio (EDA) del dataset, describiendo vari
 
 **Visualizaciones generadas en `results/`:**
 
-| Archivo | Descripcion |
-|---|---|
-| `01_distribucion_clase_objetivo.png` | Grafico de barras con conteo de clase 0 vs clase 1 |
-| `02_genero_vs_clase.png` | Conteo por genero separado por clase objetivo |
-| `03_distribucion_edad.png` | Histograma con KDE y boxplot de edad por clase |
-| `04_distribucion_salario.png` | Histograma con KDE y boxplot de salario por clase |
-| `05_matriz_correlacion.png` | Heatmap de correlacion entre variables numericas |
-| `06_pairplot.png` | Pairplot de edad vs salario coloreado por clase |
-| `07_scatter_edad_salario.png` | Scatter plot edad vs salario con color por compra |
-| `08_violin_plots.png` | Violin plots de edad y salario por clase |
+![Distribucion clase objetivo](results/01_distribucion_clase_objetivo.png)
+
+![Genero vs clase](results/02_genero_vs_clase.png)
+
+![Distribucion edad](results/03_distribucion_edad.png)
+
+![Distribucion salario](results/04_distribucion_salario.png)
+
+![Matriz correlacion](results/05_matriz_correlacion.png)
+
+![Pairplot](results/06_pairplot.png)
+
+![Scatter edad vs salario](results/07_scatter_edad_salario.png)
+
+![Violin plots](results/08_violin_plots.png)
 
 ### 2. Preprocesamiento de Datos (`scr/2_PreProcesamiento.py`)
 
@@ -91,13 +98,41 @@ Script que entrena y evalua 3 modelos de clasificacion utilizando los datos esca
 
 **Visualizaciones generadas en `results/`:**
 
-| Archivo | Descripcion |
-|---|---|
-| `09_arbol_decision_confusion_matrix.png` | Matriz de confusion del Arbol de Decision |
-| `10_arbol_decision_estructura.png` | Visualizacion grafica del arbol |
-| `11_svm_confusion_matrix.png` | Matriz de confusion de SVM |
-| `12_random_forest_confusion_matrix.png` | Matriz de confusion de Random Forest |
-| `13_random_forest_importancia.png` | Importancia de caracteristicas (Random Forest) |
-| `14_comparacion_modelos.png` | Grafico comparativo de metricas entre los 3 modelos |
-| `15_curvas_roc.png` | Curvas ROC con AUC de los 3 modelos |
+![Matriz confusion - Arbol de Decision](results/09_arbol_decision_confusion_matrix.png)
+
+![Estructura del Arbol de Decision](results/10_arbol_decision_estructura.png)
+
+![Matriz confusion - SVM](results/11_svm_confusion_matrix.png)
+
+![Matriz confusion - Random Forest](results/12_random_forest_confusion_matrix.png)
+
+![Importancia de caracteristicas - Random Forest](results/13_random_forest_importancia.png)
+
+![Comparacion de modelos](results/14_comparacion_modelos.png)
+
+![Curvas ROC](results/15_curvas_roc.png)
+
+### 4. Comparacion Experimental (`scr/4_Comparacion_Experimental.py`)
+
+Script que realiza la comparacion experimental detallada de los 3 modelos con metricas obligatorias y visualizaciones comparativas.
+
+**Metricas obligatorias:** Precision, Recall, F1-Score, Matriz de Confusion.
+
+**Funcionalidades:**
+1. **Tabla resumen de metricas** - Exportada como CSV en `results/16_tabla_resumen_metricas.csv`.
+2. **Reporte de clasificacion** - classification_report completo por modelo.
+3. **Matrices de confusion comparativa** - Los 3 modelos lado a lado.
+4. **Barplot comparativo** - Metricas con valores sobre cada barra.
+5. **Heatmap de metricas** - Vista de calor para comparar rendimiento.
+6. **Validacion cruzada (5-Fold)** - Boxplot de F1-Score para evaluar estabilidad.
+
+**Visualizaciones generadas en `results/`:**
+
+![Matrices de confusion comparativa](results/16_matrices_confusion_comparativa.png)
+
+![Barplot comparacion de metricas](results/17_barplot_comparacion_metricas.png)
+
+![Heatmap de metricas](results/18_heatmap_metricas.png)
+
+![Validacion cruzada boxplot](results/19_validacion_cruzada_boxplot.png)
 
