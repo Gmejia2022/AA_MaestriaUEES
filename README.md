@@ -4,7 +4,9 @@ Repositorio para la materia de **Aprendizaje Automatico** - Maestria en Intelige
 
 ---
 Estudiante: Ingeniero Gonzalo Mejia Alcivar
+
 Docente: Ingeniera GLADYS MARIA VILLEGAS RUGEL
+
 Fecha de Ultima Actualizacion: 01 Febrero 2026
 
 ## Dataset: Social Network Ads
