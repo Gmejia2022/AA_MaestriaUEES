@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib.colors import ListedColormap
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
@@ -234,7 +235,77 @@ plt.close()
 print(f"  -> {cv_path}")
 
 # =============================================
-# 7. CONCLUSION
+# 7. VISUALIZACION DE FRONTERAS DE DECISION
+# =============================================
+print("\n" + "=" * 60)
+print("7. VISUALIZACION DE FRONTERAS DE DECISION")
+print("=" * 60)
+
+# Usar solo Age (col 1) y EstimatedSalary (col 2) para visualizar en 2D
+X_train_2d = X_train[:, 1:3]
+X_test_2d = X_test[:, 1:3]
+y_all_2d = np.concatenate([y_train.values, y_test.values])
+X_all_2d = np.vstack([X_train_2d, X_test_2d])
+
+# Reentrenar modelos con solo 2 features para la visualizacion
+modelos_2d = {
+    "Arbol de Decision": DecisionTreeClassifier(max_depth=4, random_state=42),
+    "SVM": SVC(**grid_svm.best_params_, random_state=42),
+    "Random Forest": RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42, n_jobs=-1)
+}
+for modelo in modelos_2d.values():
+    modelo.fit(X_train_2d, y_train)
+
+# Colores
+cmap_bg = ListedColormap(["#AEC6CF", "#FFCCCB"])
+cmap_pts = ListedColormap(["#1F77B4", "#D62728"])
+
+fig, axes = plt.subplots(1, 3, figsize=(20, 6))
+
+h = 0.02  # paso de la malla
+x_min, x_max = X_all_2d[:, 0].min() - 0.5, X_all_2d[:, 0].max() + 0.5
+y_min, y_max = X_all_2d[:, 1].min() - 0.5, X_all_2d[:, 1].max() + 0.5
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+
+for ax, (nombre, modelo) in zip(axes, modelos_2d.items()):
+    Z = modelo.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+
+    ax.contourf(xx, yy, Z, alpha=0.4, cmap=cmap_bg)
+    ax.contour(xx, yy, Z, colors="gray", linewidths=0.5, alpha=0.5)
+
+    # Puntos de test
+    scatter = ax.scatter(X_test_2d[:, 0], X_test_2d[:, 1],
+                         c=y_test, cmap=cmap_pts, edgecolors="black",
+                         s=50, alpha=0.9, label="Test")
+
+    ax.set_xlim(xx.min(), xx.max())
+    ax.set_ylim(yy.min(), yy.max())
+    ax.set_xlabel("Age (estandarizado)")
+    ax.set_ylabel("EstimatedSalary (estandarizado)")
+    ax.set_title(nombre, fontsize=12, fontweight="bold")
+
+# Leyenda comun
+handles = [
+    plt.Line2D([0], [0], marker="o", color="w", markerfacecolor="#1F77B4",
+               markersize=8, markeredgecolor="black", label="No Compra (0)"),
+    plt.Line2D([0], [0], marker="o", color="w", markerfacecolor="#D62728",
+               markersize=8, markeredgecolor="black", label="Compra (1)"),
+    plt.Line2D([0], [0], color="gray", linewidth=1, linestyle="-", label="Frontera de decision")
+]
+fig.legend(handles=handles, loc="lower center", ncol=3, fontsize=10,
+           bbox_to_anchor=(0.5, -0.02))
+
+plt.suptitle("Fronteras de Decision - Comparacion de Modelos (Age vs EstimatedSalary)",
+             fontsize=14, fontweight="bold")
+plt.tight_layout(rect=[0, 0.04, 1, 0.96])
+frontier_path = os.path.join(RESULTS_DIR, "20_fronteras_decision.png")
+plt.savefig(frontier_path, dpi=150, bbox_inches="tight")
+plt.close()
+print(f"  -> {frontier_path}")
+
+# =============================================
+# 8. CONCLUSION
 # =============================================
 print("\n" + "=" * 60)
 print("7. CONCLUSION")

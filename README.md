@@ -125,6 +125,7 @@ Script que realiza la comparacion experimental detallada de los 3 modelos con me
 4. **Barplot comparativo** - Metricas con valores sobre cada barra.
 5. **Heatmap de metricas** - Vista de calor para comparar rendimiento.
 6. **Validacion cruzada (5-Fold)** - Boxplot de F1-Score para evaluar estabilidad.
+7. **Fronteras de decision** - Visualizacion 2D (Age vs EstimatedSalary) de las regiones de clasificacion de cada modelo.
 
 **Visualizaciones generadas en `results/`:**
 
@@ -135,4 +136,6 @@ Script que realiza la comparacion experimental detallada de los 3 modelos con me
 ![Heatmap de metricas](results/18_heatmap_metricas.png)
 
 ![Validacion cruzada boxplot](results/19_validacion_cruzada_boxplot.png)
+
+![Fronteras de decision](results/20_fronteras_decision.png)
 
